@@ -19,14 +19,12 @@ const middleware1 = (req, res, next)=>{
     next()
 }
 
-// app.use(middleware1);
-
 
 const middleware2 = (req, res, next)=>{
     console.log("middleware2");
     next()
 }
-app.use(middleware2);
+app.use(middleware1);
 
 
 app.get("/",  function(req, res){
@@ -38,7 +36,7 @@ app.get('/about', function(req, res){
     res.send("About");
 })
 
-app.get('/home', function(req, res){
+app.get('/home', middleware2, function(req, res){
     res.send("Home");
 })
 
@@ -46,7 +44,7 @@ app.get('/contact', function(req, res){
     res.send("Contact");
 })
 
-app.get('/course', function(req, res){
+app.get('/course', middleware2 function(req, res){
     res.send("Course");
 })
 
